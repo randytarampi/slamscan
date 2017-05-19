@@ -100,12 +100,12 @@ emacs .env # or `vim` or `nano` or whatever.
 # AWS_RUN_TIMEOUT=120
 # AWS_PROFILE=<your local `aws-cli` configured credentials in a profile>
 
-cp test/resources/event.json ./event.json 
+cp test/resources/event.s3.json ./event.json # Or event.sns.json
 # Might as well use the skeleton that's already there and just change the `DEFINE-ME`s
 emacs event.json # or `vim` or `nano` or whatever.
 
 
-# Run your lambda locally
+# Run your lambda locally against the mock data in `./event.json`
 node-lambda run
 
 
