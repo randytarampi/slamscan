@@ -17,9 +17,10 @@
     "@randy.tarampi/lambda-logger": "~4.0.1",
     "@randy.tarampi/serverless": "~4.0.1",
     "clamscan": "~0.8.5",
+    "core-js": "^3.2.1",
     "md5": "~2.2.1",
-    "temp": "~0.9.0",
-    "snyk": "^1.192.2"
+    "snyk": "^1.192.2",
+    "temp": "~0.9.0"
   },
   "devDependencies": {
     "@babel/cli": "~7.5.0",
@@ -40,7 +41,7 @@
     "coveralls": "~3.0.3",
     "del": "~5.0.0",
     "eslint-plugin-import": "~2.18.0",
-    "gulp": "~4.0.0",
+    "gulp": "^4.0.2",
     "gulp-eslint": "~6.0.0",
     "gulp-if": "~2.0.2",
     "gulp-mocha": "~6.0.0",
@@ -76,7 +77,10 @@
     "test:actual": "npm run test:actual:gulp && npm run test:actual:sls",
     "test:actual:gulp": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=/usr/local/bin/clamscan} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=/usr/local/bin/freshclam} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} gulp -LLLL --color test",
     "test:actual:sls": "NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=/usr/local/bin/clamscan} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=/usr/local/bin/freshclam} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.js",
-    "deploy": "NODE_ENV=production sls deploy --stage deploy",
+    "deploy": "NODE_ENV=production sls deploy",
+    "deploy:env": "sls deploy --stage $STAGE",
+    "deploy:prod": "export STAGE=prod NODE_ENV=production && npm run deploy:env",
+    "deploy:test": "export STAGE=test NODE_ENV=test && npm run deploy:env",
     "seed": "sls invoke --stage deploy --function updateDefinitions",
     "remove": "sls remove --stage deploy",
     "snyk-protect": "snyk protect",

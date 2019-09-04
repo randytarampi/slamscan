@@ -5,15 +5,11 @@ frameworkVersion: ">=1.0.0 <2.0.0"
 provider:
   name: aws
   runtime: nodejs8.10
-
-  stage: ${opt:stage, 'local'}
+  stage: test
   region: ${opt:region, 'us-east-1'}
-  memorySize: 256
-  timeout: 120
-
-  iamRoleStatements: ${file(./config/iamRoleStatements.js):default}
   environment: ${file(./config/env.yml):${self:provider.stage}.environment}
-
+  role: arn:aws:iam::594813696195:role/library_lambda_exec_role
+  deploymentBucket: sequoia-short-lived
 
 layers:
   clamAv:
@@ -38,7 +34,24 @@ custom:
         - aws-sdk
 
 
-functions: ${file(./config/functions.js):default}
-
-
+functions:
+  scanFile:
+    handler: src/serverless/handlers/scanFile.handler
+    role: arn:aws:iam::594813696195:role/library_lambda_exec_role
+    memorySize: 1024
+    timeout: 300
+    # events:
+    #   - s3:
+    #       bucket: ithaka-library
+    #       event: s3:ObjectCreated:*
+    #       rules:
+    #         - prefix: ${opt:stage,self:provider.stage}/retention-30-days/malware-scanner/to-validate/
+  updateDefinitions:
+    handler: src/serverless/handlers/updateDefinitions.handler
+    role: arn:aws:iam::594813696195:role/library_lambda_exec_role
+    memorySize: 2048
+    timeout: 300
+    events:
+      - schedule: 
+          rate: rate(3 hours)
 resources: ${file(./config/resources.js):default}

@@ -2,18 +2,13 @@ const {S3_FILE_CONTENT_SCAN_IS_INFECTED_TAG} = require("../src/lib/constants");
 
 module.exports.default = () => {
     const sourceBuckets = process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS && process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS.split(" ") || [];
+
     const resources = {
         SNSTopicScanResult: {
             Type: "AWS::SNS::Topic",
             Properties: {
                 DisplayName: "${self:service}-${self:provider.stage}-scan-result",
                 TopicName: "${self:service}-${self:provider.stage}-scan-result"
-            }
-        },
-        S3BucketScanDb: {
-            Type: "AWS::S3::Bucket",
-            Properties: {
-                BucketName: "${self:provider.environment.SLAMSCAN_CLAMSCAN_DB_BUCKET}"
             }
         },
         SNSTopicLambdaDeadLetterQueue: {
@@ -24,10 +19,10 @@ module.exports.default = () => {
             }
         }
     };
-
-    sourceBuckets.forEach(sourceBucketName => {
-        resources[`S3BucketPolicy${sourceBucketName}-slamscan`] = s3BucketPolicyForSourceBucketName(sourceBucketName);
-    });
+    //
+    // sourceBuckets.forEach(sourceBucketName => {
+    //     resources[`S3BucketPolicy${sourceBucketName}-slamscan`] = s3BucketPolicyForSourceBucketName(sourceBucketName);
+    // });
 
     return {
         Resources: resources
@@ -52,7 +47,7 @@ const s3BucketPolicyForSourceBucketName = module.exports.s3BucketPolicyForSource
                             ]
                         },
                         Action: "s3:GetObject",
-                        Resource: `arn:aws:s3:::${sourceBucketName}/*`,
+                        Resource: `arn:aws:s3:::ithaka-library/*`,
                         Condition: {
                             StringNotEquals: {
                                 [`s3:ExistingObjectTag/${S3_FILE_CONTENT_SCAN_IS_INFECTED_TAG}`]: "false"
@@ -63,7 +58,7 @@ const s3BucketPolicyForSourceBucketName = module.exports.s3BucketPolicyForSource
                         Effect: "Deny",
                         Action: ["s3:GetObject", "s3:PutObjectTagging"],
                         Principal: "*",
-                        Resource: `arn:aws:s3:::${sourceBucketName}/*`,
+                        Resource: `arn:aws:s3:::ithaka-library/*`,
                         Condition: {
                             StringEquals: {
                                 [`s3:ExistingObjectTag/${S3_FILE_CONTENT_SCAN_IS_INFECTED_TAG}`]: "true"
