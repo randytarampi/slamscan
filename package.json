@@ -16,7 +16,7 @@
     "@randy.tarampi/serverless": "^6.2.4",
     "clamscan": "^1.2.0",
     "md5": "^2.2.1",
-    "snyk": "^1.316.2",
+    "snyk": "^1.317.0",
     "temp": "^0.9.1"
   },
   "devDependencies": {
