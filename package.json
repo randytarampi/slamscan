@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@randy.tarampi/lambda-logger": "^6.2.3",
-    "@randy.tarampi/serverless": "^6.2.4",
+    "@randy.tarampi/serverless": "^6.2.6",
     "clamscan": "^1.2.0",
     "md5": "^2.2.1",
     "snyk": "^1.316.2",
