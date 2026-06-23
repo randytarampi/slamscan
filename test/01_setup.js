@@ -8,3 +8,7 @@ process.env.LOGGER_SRC_ENABLED = "true";
 process.env.SLAMSCAN_CLAMSCAN_DB_PATH = process.env.SLAMSCAN_CLAMSCAN_DB_PATH || "/tmp/slamscan-test/db";
 process.env.SLAMSCAN_CLAMSCAN_DB_BUCKET = "slamscan-test.randytarampi.ca";
 process.env.SLAMSCAN_SCAN_RESULT_SNS_ARN = "arn:aws:s3:::slamscan-test.randytarampi.ca";
+
+const execSync = require("child_process").execSync;
+process.env.SLAMSCAN_CLAMSCAN_BINARY_PATH = process.env.SLAMSCAN_CLAMSCAN_BINARY_PATH || execSync("which clamscan").toString().trim();
+process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH = process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH || execSync("which freshclam").toString().trim();

@@ -16,12 +16,11 @@ function isFixed(file) {
 }
 
 gulp.task("eslint", function () {
-    const path = require("path");
-    const eslint = require("gulp-eslint");
+    const eslint = require("gulp-eslint-new");
     const gulpIf = require("gulp-if");
 
     return gulp.src(["**/*.js", "!node_modules/**"])
-        .pipe(eslint({fix: true, ignorePath: path.join(__dirname, ".eslintignore")}))
+        .pipe(eslint({fix: true}))
         .pipe(eslint.format())
         .pipe(gulpIf(isFixed, gulp.dest("./")))
         .pipe(eslint.failAfterError());
