@@ -18,7 +18,7 @@ export const getClamscan = () => new Clamscan().init({
 
 export const scanFile = file => getClamscan()
     .then(scanner => new Promise((resolve, reject) => {
-        scanner.is_infected(file, (error, file, isInfected) => {
+        scanner.isInfected(file, (error, file, isInfected) => {
             if (error) {
                 return reject(error);
             }
