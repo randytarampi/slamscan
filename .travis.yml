@@ -7,8 +7,7 @@ matrix:
   - node_js: node
   - node_js: lts/*
 node_js:
-- 10
-- 12
+- 24
 - lts/*
 - node
 env:
@@ -54,7 +53,7 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-    node: 10
+    node: 24
     os: linux
     condition: "$TRAVIS_OS_NAME = linux"
 addons:

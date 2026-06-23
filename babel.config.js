@@ -3,9 +3,7 @@ module.exports = (api) => {
         [
             "@babel/preset-env",
             {
-                targets: {
-                    node: "current"
-                },
+                targets: { node: "current" }, modules: "commonjs",
                 useBuiltIns: "entry",
                 corejs: 3
             }
@@ -30,9 +28,7 @@ module.exports = (api) => {
                 [
                     "@babel/preset-env",
                     {
-                        targets: {
-                            node: "current"
-                        },
+                        targets: { node: "current" }, modules: "commonjs",
                         useBuiltIns: "entry",
                         corejs: 3
                     }
