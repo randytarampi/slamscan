@@ -3,17 +3,19 @@ module.exports = (api) => {
         [
             "@babel/preset-env",
             {
-                targets: { node: "current" }, modules: "commonjs",
-                useBuiltIns: "entry",
-                corejs: 3
+                targets: { node: "current" }, modules: "commonjs"
+            }
+        ],
+        [
+            "@babel/preset-react",
+            {
+                runtime: "automatic"
             }
         ]
     ];
 
     let plugins = [
         "lodash",
-        ["@babel/plugin-proposal-class-properties", {loose: true}],
-        "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-transform-property-literals"
     ];
 
@@ -28,9 +30,13 @@ module.exports = (api) => {
                 [
                     "@babel/preset-env",
                     {
-                        targets: { node: "current" }, modules: "commonjs",
-                        useBuiltIns: "entry",
-                        corejs: 3
+                        targets: { node: "current" }, modules: "commonjs"
+                    }
+                ],
+                [
+                    "@babel/preset-react",
+                    {
+                        runtime: "automatic"
                     }
                 ]
             ];
