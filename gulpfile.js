@@ -31,17 +31,19 @@ gulp.task("lint", gulp.parallel(["eslint"]));
 gulp.task("test.unit", () => {
     const mocha = require("gulp-mocha");
     const mochaConfig = require("./mocha.config");
+    const runMocha = mocha.default || mocha;
 
     return gulp.src("test/unit/**/*.js", {read: false})
-        .pipe(mocha(mochaConfig));
+        .pipe(runMocha(mochaConfig));
 });
 
 gulp.task("test.integration", () => {
     const mocha = require("gulp-mocha");
     const mochaConfig = require("./mocha.config");
+    const runMocha = mocha.default || mocha;
 
     return gulp.src("test/integration/**/*.js", {read: false})
-        .pipe(mocha(mochaConfig));
+        .pipe(runMocha(mochaConfig));
 });
 
 gulp.task("test", gulp.parallel(["test.unit", "test.integration"]));
