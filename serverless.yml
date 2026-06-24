@@ -4,7 +4,7 @@ frameworkVersion: ">=2.0.0 <3.0.0"
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs24.x
 
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'us-east-1'}
