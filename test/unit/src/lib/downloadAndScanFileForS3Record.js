@@ -1,11 +1,11 @@
 import sinon from "sinon";
-import * as clamscanModule from "../../../../src/lib/clamscan";
-import {downloadAndScanFileForS3Record} from "../../../../src/lib/downloadAndScanFileForS3Record";
-import * as cleanupTempFilesModule from "../../../../src/lib/util/cleanupTempFiles";
-import * as downloadFileFromBucketModule from "../../../../src/lib/util/downloadFileFromBucket";
-import * as notifySnsModule from "../../../../src/lib/util/notifySns";
-import * as putTagsOnS3ObjectModule from "../../../../src/lib/util/putTagsOnS3Object";
-import cleanRecord from "../../../resources/records/clean";
+import clamscanModule from "../../../../src/lib/clamscan.js";
+import {downloadAndScanFileForS3Record} from "../../../../src/lib/downloadAndScanFileForS3Record.js";
+import cleanupTempFilesModule from "../../../../src/lib/util/cleanupTempFiles.js";
+import downloadFileFromBucketModule from "../../../../src/lib/util/downloadFileFromBucket.js";
+import notifySnsModule from "../../../../src/lib/util/notifySns.js";
+import putTagsOnS3ObjectModule from "../../../../src/lib/util/putTagsOnS3Object.js";
+import cleanRecord from "../../../resources/records/clean.json" with {type: "json"};
 
 describe("downloadAndScanFileForS3Record", function () {
     beforeEach(function () {

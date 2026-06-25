@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import sinon from "sinon";
 import temp from "temp";
-import {createTempDirectory} from "../../../../../src/lib";
+import {createTempDirectory} from "../../../../../src/lib/index.js";
 
 describe("createTempDirectory", function () {
     beforeEach(function () {

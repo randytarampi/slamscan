@@ -1,4 +1,4 @@
-module.exports = (api) => {
+export default api => {
     let presets = [
         [
             "@babel/preset-env",

@@ -1,4 +1,4 @@
-module.exports.default = () => {
+export default () => {
     const sourceBuckets = process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS && process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS.split(" ") || [];
 
     return {

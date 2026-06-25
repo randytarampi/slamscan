@@ -1,10 +1,17 @@
-const gulp = require("gulp");
+import path from "path";
+import {fileURLToPath} from "url";
+import gulp from "gulp";
+import vinylPaths from "vinyl-paths";
+import {deleteAsync as del} from "del";
+import eslint from "gulp-eslint-new";
+import gulpIf from "gulp-if";
+import mocha from "gulp-mocha";
+import mochaConfig from "./mocha.config.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 gulp.task("clean", function () {
-    const vinylPaths = require("vinyl-paths");
-    const del = require("del");
-    const path = require("path");
-
     const directories = [".serverless/", ".webpack/", ".dynamodb/", "coverage/", ".nyc_output/", "build/"].map(directory => path.join(__dirname, directory));
 
     return gulp.src(directories, {allowEmpty: true})
@@ -16,9 +23,6 @@ function isFixed(file) {
 }
 
 gulp.task("eslint", function () {
-    const eslint = require("gulp-eslint-new");
-    const gulpIf = require("gulp-if");
-
     return gulp.src(["**/*.js", "!node_modules/**"])
         .pipe(eslint({fix: true}))
         .pipe(eslint.format())
@@ -29,8 +33,6 @@ gulp.task("eslint", function () {
 gulp.task("lint", gulp.parallel(["eslint"]));
 
 gulp.task("test.unit", () => {
-    const mocha = require("gulp-mocha");
-    const mochaConfig = require("./mocha.config");
     const runMocha = mocha.default || mocha;
 
     return gulp.src("test/unit/**/*.js", {read: false})
@@ -38,8 +40,6 @@ gulp.task("test.unit", () => {
 });
 
 gulp.task("test.integration", () => {
-    const mocha = require("gulp-mocha");
-    const mochaConfig = require("./mocha.config");
     const runMocha = mocha.default || mocha;
 
     return gulp.src("test/integration/**/*.js", {read: false})

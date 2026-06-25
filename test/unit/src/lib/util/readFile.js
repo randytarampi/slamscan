@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import fs from "fs";
 import sinon from "sinon";
-import {readFile} from "../../../../../src/lib";
+import {readFile} from "../../../../../src/lib/index.js";
 
 describe("readFile", function () {
     beforeEach(function () {

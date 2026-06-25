@@ -3,19 +3,19 @@ import childProcess from "child_process";
 import md5 from "md5";
 import path from "path";
 import sinon from "sinon";
-import * as clamscanModule from "../../../../src/lib/clamscan";
-import {S3_FILE_CONTENT_MD5_TAG} from "../../../../src/lib/constants";
+import clamscanModule from "../../../../src/lib/clamscan.js";
+import {S3_FILE_CONTENT_MD5_TAG} from "../../../../src/lib/constants.js";
 import {
     downloadClamscanDbFilesFromFreshclam,
     updateClamscanDbFiles,
     uploadClamscanDbFile,
     uploadClamscanDbFileIfNecessary
-} from "../../../../src/lib/updateClamscanDbFiles";
-import * as cleanupTempFilesModule from "../../../../src/lib/util/cleanupTempFiles";
-import * as createTempDirectoryModule from "../../../../src/lib/util/createTempDirectory";
-import * as getTagsForFileInBucketModule from "../../../../src/lib/util/getTagsForFileInBucket";
-import * as readFileModule from "../../../../src/lib/util/readFile";
-import * as uploadFileToBucketModule from "../../../../src/lib/util/uploadFileToBucket";
+} from "../../../../src/lib/updateClamscanDbFiles.js";
+import cleanupTempFilesModule from "../../../../src/lib/util/cleanupTempFiles.js";
+import createTempDirectoryModule from "../../../../src/lib/util/createTempDirectory.js";
+import getTagsForFileInBucketModule from "../../../../src/lib/util/getTagsForFileInBucket.js";
+import readFileModule from "../../../../src/lib/util/readFile.js";
+import uploadFileToBucketModule from "../../../../src/lib/util/uploadFileToBucket.js";
 
 describe("updateClamscanDbFiles", function () {
     let stubFileValue;

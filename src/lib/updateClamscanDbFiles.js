@@ -1,16 +1,14 @@
 import childProcess from "child_process";
 import md5 from "md5";
 import path from "path";
-import logger from "../serverless/logger";
-import {CLAMSCAN_DB_FILES} from "./clamscan";
-import {
-    cleanupTempFiles,
-    createTempDirectory,
-    getTagsForFileInBucket,
-    readFile,
-    S3_FILE_CONTENT_MD5_TAG,
-    uploadFileToBucket
-} from "./util";
+import logger from "../serverless/logger.js";
+import clamscan from "./clamscan.js";
+import cleanupTempFiles from "./util/cleanupTempFiles.js";
+import createTempDirectory from "./util/createTempDirectory.js";
+import getTagsForFileInBucket from "./util/getTagsForFileInBucket.js";
+import readFile from "./util/readFile.js";
+import uploadFileToBucket from "./util/uploadFileToBucket.js";
+import {S3_FILE_CONTENT_MD5_TAG} from "./constants.js";
 
 export const downloadClamscanDbFilesFromFreshclam = directory => new Promise((resolve, reject) => {
     const command = [
@@ -38,12 +36,12 @@ export const downloadClamscanDbFilesFromFreshclam = directory => new Promise((re
 
 export const uploadClamscanDbFile = (tempDirectory, dbFilename) => {
     const dbFilePath = path.join(tempDirectory, dbFilename);
-    return uploadFileToBucket(process.env.SLAMSCAN_CLAMSCAN_DB_BUCKET, dbFilename, dbFilePath);
+    return uploadFileToBucket.uploadFileToBucket(process.env.SLAMSCAN_CLAMSCAN_DB_BUCKET, dbFilename, dbFilePath);
 };
 
 export const uploadClamscanDbFileIfNecessary = (tempDirectory, dbFilename) => Promise.all([
-        readFile(path.join(tempDirectory, dbFilename)),
-        getTagsForFileInBucket(process.env.SLAMSCAN_CLAMSCAN_DB_BUCKET, dbFilename)
+        readFile.readFile(path.join(tempDirectory, dbFilename)),
+        getTagsForFileInBucket.getTagsForFileInBucket(process.env.SLAMSCAN_CLAMSCAN_DB_BUCKET, dbFilename)
             .then(tags => {
                 const md5Tag = tags.find(tag => tag.Key === S3_FILE_CONTENT_MD5_TAG);
 
@@ -67,11 +65,11 @@ export const uploadClamscanDbFileIfNecessary = (tempDirectory, dbFilename) => Pr
         return path.join(tempDirectory, dbFilename);
     });
 
-export const updateClamscanDbFiles = () => createTempDirectory()
+export const updateClamscanDbFiles = () => createTempDirectory.createTempDirectory()
     .then(tempDirectory => {
         return downloadClamscanDbFilesFromFreshclam(tempDirectory)
-            .then(() => Promise.all(CLAMSCAN_DB_FILES.map(dbFilename => uploadClamscanDbFileIfNecessary(tempDirectory, dbFilename))))
-            .then(() => cleanupTempFiles());
+            .then(() => Promise.all(clamscan.CLAMSCAN_DB_FILES.map(dbFilename => uploadClamscanDbFileIfNecessary(tempDirectory, dbFilename))))
+            .then(() => cleanupTempFiles.cleanupTempFiles());
     });
 
 export default updateClamscanDbFiles;

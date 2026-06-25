@@ -26,3 +26,9 @@ export const scanFile = file => getClamscan()
             resolve(isInfected);
         });
     }));
+
+export default {
+    CLAMSCAN_DB_FILES,
+    getClamscan,
+    scanFile
+};

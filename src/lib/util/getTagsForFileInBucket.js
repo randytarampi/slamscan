@@ -1,4 +1,4 @@
-import Aws from "../../serverless/aws";
+import Aws from "../../serverless/aws.js";
 
 export const getTagsForFileInBucket = (bucket, key) => new Aws.S3({signatureVersion: "v4"})
     .getObjectTagging({
@@ -8,4 +8,6 @@ export const getTagsForFileInBucket = (bucket, key) => new Aws.S3({signatureVers
     .promise()
     .then(data => data.TagSet);
 
-export default getTagsForFileInBucket;
+export default {
+    getTagsForFileInBucket
+};

@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import sinon from "sinon";
-import {getTagsForFileInBucket} from "../../../../../src/lib/util/getTagsForFileInBucket";
-import Aws from "../../../../../src/serverless/aws";
+import {getTagsForFileInBucket} from "../../../../../src/lib/util/getTagsForFileInBucket.js";
+import Aws from "../../../../../src/serverless/aws.js";
 
 describe("getTagsForFileInBucket", function () {
     let s3GetObjectTaggingStub;

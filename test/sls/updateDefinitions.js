@@ -1,8 +1,8 @@
 import {chai, getWrapper} from "serverless-mocha-plugin";
 import sinon from "sinon";
-import * as updateClamscanDbFilesModule from "../../src/lib/updateClamscanDbFiles";
-import failureEvent from "../resources/updateDefinitions/failure.json";
-import successEvent from "../resources/updateDefinitions/success.json";
+import updateClamscanDbFilesModule from "../../src/lib/updateClamscanDbFiles.js";
+import failureEvent from "../resources/updateDefinitions/failure.json" with {type: "json"};
+import successEvent from "../resources/updateDefinitions/success.json" with {type: "json"};
 
 const expect = chai.expect;
 
