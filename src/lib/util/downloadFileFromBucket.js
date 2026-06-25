@@ -1,5 +1,5 @@
 import fs from "fs";
-import Aws from "../../serverless/aws";
+import Aws from "../../serverless/aws.js";
 
 export const downloadFileFromBucket = (bucket, key, filePath) => new Promise((resolve, reject) => new Aws.S3({signatureVersion: "v4"})
     .getObject({
@@ -12,4 +12,6 @@ export const downloadFileFromBucket = (bucket, key, filePath) => new Promise((re
     .on("close", () => resolve(filePath))
 );
 
-export default downloadFileFromBucket;
+export default {
+    downloadFileFromBucket
+};

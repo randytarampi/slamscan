@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import sinon from "sinon";
-import {putTagsOnS3Object} from "../../../../../src/lib/util/putTagsOnS3Object";
-import Aws from "../../../../../src/serverless/aws";
+import {putTagsOnS3Object} from "../../../../../src/lib/util/putTagsOnS3Object.js";
+import Aws from "../../../../../src/serverless/aws.js";
 
 describe("putTagsOnS3Object", function () {
     let S3PutObjectTaggingStub;

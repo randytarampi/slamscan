@@ -2534,7 +2534,6 @@ __metadata:
   resolution: "@randy.tarampi/serverless@portal:/Users/randytarampi/Development/me/packages/serverless::locator=slamscan%40workspace%3A."
   dependencies:
     "@randy.tarampi/js": "npm:^7.0.0"
-    aws-sdk: "npm:^2.1693.0"
     aws-xray-sdk: "npm:^3.12.0"
     busboy: "npm:^1.6.0"
     mime-types: "npm:^3.0.2"
@@ -3936,7 +3935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:^2.1693.0, aws-sdk@npm:^2.4.0, aws-sdk@npm:^2.491.0":
+"aws-sdk@npm:^2.4.0, aws-sdk@npm:^2.491.0":
   version: 2.1693.0
   resolution: "aws-sdk@npm:2.1693.0"
   dependencies:

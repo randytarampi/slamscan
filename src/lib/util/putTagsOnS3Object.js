@@ -1,4 +1,4 @@
-import Aws from "../../serverless/aws";
+import Aws from "../../serverless/aws.js";
 
 export const putTagsOnS3Object = (bucket, key, tagsMap) => new Aws.S3({signatureVersion: "v4"})
     .putObjectTagging({
@@ -15,4 +15,6 @@ export const putTagsOnS3Object = (bucket, key, tagsMap) => new Aws.S3({signature
     })
     .promise();
 
-export default putTagsOnS3Object;
+export default {
+    putTagsOnS3Object
+};

@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import sinon from "sinon";
-import {notifySns} from "../../../../../src/lib/util/notifySns";
-import Aws from "../../../../../src/serverless/aws";
+import {notifySns} from "../../../../../src/lib/util/notifySns.js";
+import Aws from "../../../../../src/serverless/aws.js";
 
 describe("notifySns", function () {
     let snsPublishStub;

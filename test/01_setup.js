@@ -1,4 +1,6 @@
-process.env.SENTRY_DSN = "https://meow@sentry.io/woof";
+import {execSync} from "child_process";
+
+process.env.SENTRY_DSN = "https://__VG_EMAIL_c7273d2956ad__/woof";
 process.env.LOGGER_ENABLED = "true";
 process.env.LOGGER_STREAM_HUMAN_ENABLED = "true";
 process.env.LOGGER_STREAM_STDOUT_ENABLED = "false";
@@ -9,6 +11,5 @@ process.env.SLAMSCAN_CLAMSCAN_DB_PATH = process.env.SLAMSCAN_CLAMSCAN_DB_PATH ||
 process.env.SLAMSCAN_CLAMSCAN_DB_BUCKET = "slamscan-test.randytarampi.ca";
 process.env.SLAMSCAN_SCAN_RESULT_SNS_ARN = "arn:aws:s3:::slamscan-test.randytarampi.ca";
 
-const execSync = require("child_process").execSync;
 process.env.SLAMSCAN_CLAMSCAN_BINARY_PATH = process.env.SLAMSCAN_CLAMSCAN_BINARY_PATH || execSync("which clamscan").toString().trim();
 process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH = process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH || execSync("which freshclam").toString().trim();

@@ -2,12 +2,14 @@ import {expect} from "chai";
 import fs from "fs";
 import path from "path";
 import sinon from "sinon";
-import {CLAMSCAN_DB_FILES} from "../../../../src/lib/clamscan";
+import clamscanModule from "../../../../src/lib/clamscan.js";
 import {
     downloadClamscanDbFileFromS3,
     downloadClamscanDbFilesFromS3
-} from "../../../../src/lib/downloadClamscanDbFilesFromS3";
-import * as downloadFileFromBucketModule from "../../../../src/lib/util/downloadFileFromBucket";
+} from "../../../../src/lib/downloadClamscanDbFilesFromS3.js";
+import downloadFileFromBucketModule from "../../../../src/lib/util/downloadFileFromBucket.js";
+
+const {CLAMSCAN_DB_FILES} = clamscanModule;
 
 describe("downloadClamscanDbFilesFromS3", function () {
     beforeEach(function () {

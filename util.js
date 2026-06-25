@@ -17,7 +17,18 @@ const resolveWebpackMode = () => {
 };
 const webpackMode = resolveWebpackMode();
 
-module.exports = {
+export {
+    WEBPACK_MODE_PRODUCTION,
+    WEBPACK_MODE_DEVELOPMENT,
+    productionEnvs,
+    isDevelopment,
+    isNodeEnvDevelopment,
+    isBabelEnvDevelopment,
+    resolveWebpackMode,
+    webpackMode
+};
+
+export default {
     WEBPACK_MODE_PRODUCTION,
     WEBPACK_MODE_DEVELOPMENT,
     productionEnvs,

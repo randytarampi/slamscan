@@ -1,9 +1,9 @@
 import {expect} from "chai";
 import md5 from "md5";
 import sinon from "sinon";
-import * as readFileModule from "../../../../../src/lib/util/readFile";
-import {uploadFileToBucket} from "../../../../../src/lib/util/uploadFileToBucket";
-import Aws from "../../../../../src/serverless/aws";
+import readFileModule from "../../../../../src/lib/util/readFile.js";
+import {uploadFileToBucket} from "../../../../../src/lib/util/uploadFileToBucket.js";
+import Aws from "../../../../../src/serverless/aws.js";
 
 describe("uploadFileToBucket", function () {
     let s3PutObjectStub;

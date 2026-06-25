@@ -1,10 +1,10 @@
 import md5 from "md5";
-import Aws from "../../serverless/aws";
-import logger from "../../serverless/logger";
-import {S3_FILE_CONTENT_MD5_TAG} from "../constants";
-import {readFile} from "./readFile";
+import Aws from "../../serverless/aws.js";
+import logger from "../../serverless/logger.js";
+import {S3_FILE_CONTENT_MD5_TAG} from "../constants.js";
+import readFile from "./readFile.js";
 
-export const uploadFileToBucket = (bucket, key, filePath) => readFile(filePath)
+export const uploadFileToBucket = (bucket, key, filePath) => readFile.readFile(filePath)
     .then(file => {
         logger.debug("preparing upload of %s to s3://%s/%s", filePath, bucket, key);
 
@@ -26,4 +26,6 @@ export const uploadFileToBucket = (bucket, key, filePath) => readFile(filePath)
             });
     });
 
-export default uploadFileToBucket;
+export default {
+    uploadFileToBucket
+};

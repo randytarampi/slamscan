@@ -1,7 +1,7 @@
 import {expect} from "chai";
 import sinon from "sinon";
 import temp from "temp";
-import {cleanupTempFiles} from "../../../../../src/lib";
+import {cleanupTempFiles} from "../../../../../src/lib/index.js";
 
 describe("cleanupTempFiles", function () {
     beforeEach(function () {
