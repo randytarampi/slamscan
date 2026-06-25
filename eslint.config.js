@@ -1,8 +1,8 @@
-const js = require("@eslint/js");
-const importPlugin = require("eslint-plugin-import");
-const globals = require("globals");
+import js from "@eslint/js";
+import importPlugin from "eslint-plugin-import";
+import globals from "globals";
 
-module.exports = [
+export default [
     {
         ignores: [
             "node_modules/**",

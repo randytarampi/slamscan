@@ -8,4 +8,6 @@ export const readFile = filePath => new Promise((resolve, reject) => fs.readFile
     return resolve(file);
 }));
 
-export default readFile;
+export default {
+    readFile
+};

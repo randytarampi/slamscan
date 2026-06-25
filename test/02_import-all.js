@@ -1,1 +1,1 @@
-import "../src/serverless/handlers";
+import "../src/serverless/handlers/index.js";

@@ -2,8 +2,8 @@ import {expect} from "chai";
 import fs from "fs";
 import sinon from "sinon";
 import {Writable} from "stream";
-import {downloadFileFromBucket} from "../../../../../src/lib/util/downloadFileFromBucket";
-import Aws from "../../../../../src/serverless/aws";
+import {downloadFileFromBucket} from "../../../../../src/lib/util/downloadFileFromBucket.js";
+import Aws from "../../../../../src/serverless/aws.js";
 
 describe("downloadFileFromBucket", function () {
     let s3GetObjectStub;

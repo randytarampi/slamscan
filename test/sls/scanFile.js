@@ -1,10 +1,10 @@
 import {chai, getWrapper} from "serverless-mocha-plugin";
 import sinon from "sinon";
-import * as downloadAndScanFileForS3RecordModule from "../../src/lib/downloadAndScanFileForS3Record";
-import * as downloadClamscanDbFilesFromS3Module from "../../src/lib/downloadClamscanDbFilesFromS3";
-import failureEvent from "../resources/scanFile/failure.json";
-import successCleanEvent from "../resources/scanFile/success.clean.json";
-import successInfectedEvent from "../resources/scanFile/success.infected.json";
+import downloadAndScanFileForS3RecordModule from "../../src/lib/downloadAndScanFileForS3Record.js";
+import downloadClamscanDbFilesFromS3Module from "../../src/lib/downloadClamscanDbFilesFromS3.js";
+import failureEvent from "../resources/scanFile/failure.json" with {type: "json"};
+import successCleanEvent from "../resources/scanFile/success.clean.json" with {type: "json"};
+import successInfectedEvent from "../resources/scanFile/success.infected.json" with {type: "json"};
 
 const expect = chai.expect;
 

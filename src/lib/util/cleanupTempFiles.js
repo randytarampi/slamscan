@@ -8,4 +8,6 @@ export const cleanupTempFiles = () => new Promise((resolve, reject) => temp.clea
     return resolve();
 }));
 
-export default cleanupTempFiles;
+export default {
+    cleanupTempFiles
+};

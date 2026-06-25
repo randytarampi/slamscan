@@ -1,5 +1,5 @@
 import temp from "temp";
-import logger, {configureLogger} from "../logger";
+import logger, {configureLogger} from "../logger.js";
 
 temp.track();
 

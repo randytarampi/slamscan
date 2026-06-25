@@ -1,14 +1,15 @@
-const path = require("path");
-const slsw = require("serverless-webpack");
-const nodeExternals = require("webpack-node-externals");
-const webpack = require("webpack");
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
-const util = require("./util");
+import path from "path";
+import {fileURLToPath} from "url";
+import slsw from "serverless-webpack";
+import nodeExternals from "webpack-node-externals";
+import webpack from "webpack";
+import bundleAnalyzer from "webpack-bundle-analyzer";
+import util from "./util.js";
 
-const {
-    isDevelopment,
-    resolveWebpackMode: resolveMode
-} = util;
+const {BundleAnalyzerPlugin} = bundleAnalyzer;
+const {isDevelopment, resolveWebpackMode: resolveMode} = util;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const plugins = [
     new webpack.DefinePlugin({
@@ -25,7 +26,7 @@ if (!isDevelopment || process.env.BUNDLE_ANALYZER) {
     );
 }
 
-module.exports = {
+export default {
     entry: slsw.lib.entries,
     mode: resolveMode(),
     devtool: isDevelopment ? "eval-source-map" : "nosources-source-map",

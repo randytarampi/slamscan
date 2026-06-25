@@ -8,4 +8,6 @@ export const createTempDirectory = () => new Promise((resolve, reject) => temp.m
     return resolve(path);
 }));
 
-export default createTempDirectory;
+export default {
+    createTempDirectory
+};

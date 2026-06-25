@@ -1,40 +1,6 @@
-const {S3_FILE_CONTENT_SCAN_IS_INFECTED_TAG} = require("../src/lib/constants");
+import {S3_FILE_CONTENT_SCAN_IS_INFECTED_TAG} from "../src/lib/constants.js";
 
-module.exports.default = () => {
-    const sourceBuckets = process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS && process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS.split(" ") || [];
-    const resources = {
-        SNSTopicScanResult: {
-            Type: "AWS::SNS::Topic",
-            Properties: {
-                DisplayName: "${self:service}-${self:provider.stage}-scan-result",
-                TopicName: "${self:service}-${self:provider.stage}-scan-result"
-            }
-        },
-        S3BucketScanDb: {
-            Type: "AWS::S3::Bucket",
-            Properties: {
-                BucketName: "${self:provider.environment.SLAMSCAN_CLAMSCAN_DB_BUCKET}"
-            }
-        },
-        SNSTopicLambdaDeadLetterQueue: {
-            Type: "AWS::SNS::Topic",
-            Properties: {
-                DisplayName: "${self:service}-${self:provider.stage}-lambda-dlq",
-                TopicName: "${self:service}-${self:provider.stage}-lambda-dlq"
-            }
-        }
-    };
-
-    sourceBuckets.forEach(sourceBucketName => {
-        resources[`S3BucketPolicy${sourceBucketName}-slamscan`] = s3BucketPolicyForSourceBucketName(sourceBucketName);
-    });
-
-    return {
-        Resources: resources
-    };
-};
-
-const s3BucketPolicyForSourceBucketName = module.exports.s3BucketPolicyForSourceBucketName = sourceBucketName => {
+export const s3BucketPolicyForSourceBucketName = sourceBucketName => {
     return {
         Type: "AWS::S3::BucketPolicy",
         Properties: {
@@ -73,5 +39,39 @@ const s3BucketPolicyForSourceBucketName = module.exports.s3BucketPolicyForSource
                 ]
             }
         }
+    };
+};
+
+export default () => {
+    const sourceBuckets = process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS && process.env.SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS.split(" ") || [];
+    const resources = {
+        SNSTopicScanResult: {
+            Type: "AWS::SNS::Topic",
+            Properties: {
+                DisplayName: "${self:service}-${self:provider.stage}-scan-result",
+                TopicName: "${self:service}-${self:provider.stage}-scan-result"
+            }
+        },
+        S3BucketScanDb: {
+            Type: "AWS::S3::Bucket",
+            Properties: {
+                BucketName: "${self:provider.environment.SLAMSCAN_CLAMSCAN_DB_BUCKET}"
+            }
+        },
+        SNSTopicLambdaDeadLetterQueue: {
+            Type: "AWS::SNS::Topic",
+            Properties: {
+                DisplayName: "${self:service}-${self:provider.stage}-lambda-dlq",
+                TopicName: "${self:service}-${self:provider.stage}-lambda-dlq"
+            }
+        }
+    };
+
+    sourceBuckets.forEach(sourceBucketName => {
+        resources[`S3BucketPolicy${sourceBucketName}-slamscan`] = s3BucketPolicyForSourceBucketName(sourceBucketName);
+    });
+
+    return {
+        Resources: resources
     };
 };

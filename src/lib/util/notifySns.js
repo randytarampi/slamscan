@@ -1,4 +1,4 @@
-import Aws from "../../serverless/aws";
+import Aws from "../../serverless/aws.js";
 
 export const notifySns = (topicArn, message) => new Aws.SNS()
     .publish({
@@ -7,4 +7,6 @@ export const notifySns = (topicArn, message) => new Aws.SNS()
     })
     .promise();
 
-export default notifySns;
+export default {
+    notifySns
+};

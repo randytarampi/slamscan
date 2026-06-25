@@ -1,2 +1,2 @@
-import "./scanFile";
-import "./updateDefinitions";
+import "./scanFile.js";
+import "./updateDefinitions.js";
