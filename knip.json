@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["package.json"],
+  "ignore": [
+    "coverage/**",
+    ".nyc_output/**",
+    "dist/**",
+    "build/**",
+    "test/**",
+    "tests/**"
+  ]
+}
