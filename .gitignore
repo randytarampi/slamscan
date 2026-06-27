@@ -1,6 +1,5 @@
 # Logs
 logs
-*.log
 npm-debug.log*
 
 # Runtime data
@@ -15,9 +14,23 @@ lib-cov
 coverage
 
 # nyc test coverage
-.nyc_output
 .nyc_output-gulp
 .nyc_output-sls
+
+# Generated
+## Node
+*.log
+.nyc_output/
+
+## Testing
+test-results.xml
+
+## JetBrains
+*.iml
+.idea/
+
+## Lerna
+lerna-debug.log
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -41,10 +54,6 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-
-# Project files
-.idea
-*.iml
 
 # OS files
 .DS_Store
