@@ -2,6 +2,11 @@ name: CI
 on:
   push:
   pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   node:
     runs-on: ubuntu-latest
@@ -11,5 +16,14 @@ jobs:
         with:
           node-version: 24
       - run: corepack enable
-      - run: yarn install --immutable
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            node_modules
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-
+      - run: yarn install --immutable --immutable-cache
       - run: yarn test
