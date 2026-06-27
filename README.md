@@ -9,7 +9,6 @@
 ```
 
 [![CI](https://github.com/randytarampi/slamscan/actions/workflows/ci.yml/badge.svg)](https://github.com/randytarampi/slamscan/actions/workflows/ci.yml)
-[![Analytics](https://ga-beacon.appspot.com/UA-50921068-1/beacon/github/randytarampi/me/tree/master/packages/slamscan?flat&useReferrer)](https://github.com/igrigorik/ga-beacon)
 
 
 
@@ -24,39 +23,42 @@ Unfortunately due to size limitations, its not possible to keep the virus defini
 
 ```bash
 brew install nvm clamav
-nvm install 8
-
-brew cask install docker
-open /Applications/Docker.app
+nvm install 24
+corepack enable
 ```
+
+You'll want ClamAV's `clamscan` and `freshclam` on your PATH.
 
 # Installation
 
 ```bash
-npm install
+yarn install
 
-# Or this, for safety
-npm ci
+# Build the native bits after install
+yarn build:native
 ```
 
 # Testing
 
 ```bash
 # Lint and test
-npm test
+yarn test
 
 # Run tests with coverage
-npm run cover
+yarn cover
+
+# If you want the SLS integration tests too
+SLAMSCAN_RUN_SLS_TESTS=1 yarn test
 ```
 
 # Deployment
 
 ```bash
-# The equivalent of `NODE_ENV=prd npx sls deploy --stage deploy`
-npm run deploy
+# The equivalent of `NODE_ENV=production npx sls deploy --stage deploy`
+yarn deploy
 
 # The equivalent of `npx sls invoke --stage deploy --function updateDefinitions`
-npm run seed
+yarn seed
 ```
 
 # Configuration
@@ -65,9 +67,9 @@ You'll need to specify some S3 buckets for `scanFile` to monitor before you're a
 
 1. Define `SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS` at deploy time, say `foo`, `bar` and `baz` to be created automatically.
     ```bash
-    SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS='foo bar baz' npm run deploy
+    SLAMSCAN_SPACE_DELIMITED_SOURCE_BUCKETS='foo bar baz' yarn deploy
     ```
-    - This is **not recommended** since the bucket lifecycles are tied to the lifecycle of this serverless service – i.e. running `npm run remove` will delete your buckets and their contents.
+    - This is **not recommended** since the bucket lifecycles are tied to the lifecycle of this serverless service – i.e. running `yarn remove` will delete your buckets and their contents.
 1. For existing S3 buckets, or otherwise self-managed buckets, add the appropriate (S3 `PUT`) triggers [here](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/slamscan-deploy-scanFile?tab=triggers).
     - The `scanFile` handler will need the `GetObject`, `GetObjectTagging`, `PutObject`, `PutObjectTagging` and `PutObjectVersionTagging` permissions on these buckets, possibly by
         - adding some `IamRoleStatements` [per `iamRoleStatementForSourceBucketName` in `config/iamRoleStatementForSourceBucketName.js`](./config/iamRoleStatementForSourceBucketName.js),
