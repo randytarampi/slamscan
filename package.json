@@ -44,6 +44,9 @@
     "gulp-eslint-new": "^2.6.2",
     "gulp-if": "^3.0.0",
     "gulp-mocha": "^10.0.1",
+    "husky": "^9.1.7",
+    "knip": "^6.22.0",
+    "lint-staged": "^17.0.8",
     "mocha": "^11.7.6",
     "mocha-junit-reporter": "^2.2.1",
     "nyc": "^18.0.0",
@@ -79,6 +82,7 @@
     "cover:sls": "cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} nyc --temp-dir .nyc_output-sls sls invoke test --path test/sls",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "deploy": "cross-env-shell NODE_ENV=production sls deploy --stage deploy",
+    "knip": "knip",
     "build": "yarn run build:native",
     "postinstall": "true",
     "build:native": "./bin/build.sh",
@@ -90,7 +94,8 @@
     "test": "yarn run test:actual",
     "test:actual": "yarn run test:actual:gulp && sh -c 'if [ \"${SLAMSCAN_RUN_SLS_TESTS:-0}\" = 1 ]; then yarn run test:actual:sls; fi'",
     "test:actual:gulp": "sh -c 'cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} gulp -LLLL --color test'",
-    "test:actual:sls": "sh -c 'cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.cjs'"
+    "test:actual:sls": "sh -c 'cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.cjs'",
+    "prepare": "husky"
   },
   "packageManager": "yarn@4.17.0",
   "resolutions": {
