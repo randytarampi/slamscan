@@ -6058,7 +6058,7 @@ __metadata:
     string.prototype.trimend: "npm:^1.0.9"
     tsconfig-paths: "npm:^3.15.0"
   peerDependencies:
-    eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9
+    eslint: "*"
   checksum: 10c0/bfb1b8fc8800398e62ddfefbf3638d185286edfed26dfe00875cc2846d954491b4f5112457831588b757fa789384e1ae585f812614c4797f0499fa234fd4a48b
   languageName: node
   linkType: hard
