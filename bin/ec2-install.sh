@@ -4,7 +4,7 @@ set -e
 
 yum update -y
 yum install -y cpio yum-utils zip
-yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+amazon-linux-extras install epel -y
 
 pushd /tmp
 yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libtool-ltdl

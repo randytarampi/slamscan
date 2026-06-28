@@ -5,7 +5,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 docker run \
     --rm \
-    -v ${DIR}/..:/opt/app \
-    -it \
+    --platform linux/amd64 \
+    -v "${DIR}/..:/opt/app" \
     amazonlinux:2 \
     /bin/bash -c "cd /opt/app && ./bin/ec2-install.sh"
