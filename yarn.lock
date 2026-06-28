@@ -2442,9 +2442,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@randy.tarampi/js@portal:/Users/randytarampi/Development/me/packages/js::locator=slamscan%40workspace%3A.":
+"@randy.tarampi/js@portal:../me/packages/js::locator=slamscan%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@randy.tarampi/js@portal:/Users/randytarampi/Development/me/packages/js::locator=slamscan%40workspace%3A."
+  resolution: "@randy.tarampi/js@portal:../me/packages/js::locator=slamscan%40workspace%3A."
   dependencies:
     "@randy.tarampi/schema-dot-org-types": "npm:latest"
     dms-conversion: "npm:^3.1.4"
@@ -2460,9 +2460,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@randy.tarampi/lambda-logger@portal:/Users/randytarampi/Development/me/packages/lambda-logger::locator=slamscan%40workspace%3A.":
+"@randy.tarampi/lambda-logger@portal:../me/packages/lambda-logger::locator=slamscan%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@randy.tarampi/lambda-logger@portal:/Users/randytarampi/Development/me/packages/lambda-logger::locator=slamscan%40workspace%3A."
+  resolution: "@randy.tarampi/lambda-logger@portal:../me/packages/lambda-logger::locator=slamscan%40workspace%3A."
   dependencies:
     bunyan: "npm:^2.0.5"
     bunyan-format: "npm:^0.2.1"
@@ -2481,9 +2481,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@randy.tarampi/serverless@portal:/Users/randytarampi/Development/me/packages/serverless::locator=slamscan%40workspace%3A.":
+"@randy.tarampi/serverless@portal:../me/packages/serverless::locator=slamscan%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@randy.tarampi/serverless@portal:/Users/randytarampi/Development/me/packages/serverless::locator=slamscan%40workspace%3A."
+  resolution: "@randy.tarampi/serverless@portal:../me/packages/serverless::locator=slamscan%40workspace%3A."
   dependencies:
     "@randy.tarampi/js": "workspace:*"
     aws-xray-sdk: "npm:^3.12.0"
