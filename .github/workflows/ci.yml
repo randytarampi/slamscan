@@ -11,19 +11,26 @@ jobs:
   node:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: corepack enable
-      - name: Cache Yarn
-        uses: actions/cache@v4
-        with:
-          path: |
-            .yarn/cache
-            node_modules
-          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            yarn-${{ runner.os }}-
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn test
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build native addon
+        run: yarn build
+
+      - name: Run tests
+        run: yarn test
