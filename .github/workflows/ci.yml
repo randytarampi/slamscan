@@ -35,6 +35,12 @@ jobs:
           YARN_ENABLE_HARDENED_MODE: false
         run: yarn install
 
+      - name: Install ClamAV
+        run: sudo apt-get update && sudo apt-get install -y clamav clamav-daemon
+
+      - name: Update ClamAV database
+        run: sudo freshclam || true
+
       - name: Build native addon
         run: yarn build
 
