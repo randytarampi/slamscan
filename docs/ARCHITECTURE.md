@@ -14,3 +14,7 @@
 ## Dependency shape
 - Runtime code depends on the shared `@randy.tarampi/*` packages via portal resolutions into the `me` workspace.
 - Serverless entrypoints wrap the lower-level scanning helpers in `src/lib`.
+
+## CI/CD Pipeline
+- `.github/workflows/ci.yml` runs tests on PRs on Node 24.
+- There is no release workflow; `slamscan` is a private package.
