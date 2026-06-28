@@ -20,6 +20,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout sibling me repo
+        run: git clone --depth 1 https://x-access-token:${{ github.token }}@github.com/randytarampi/me.git ../me
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:

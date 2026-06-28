@@ -96,18 +96,18 @@
   },
   "packageManager": "yarn@4.17.0",
   "resolutions": {
-    "@randy.tarampi/assets": "portal:/Users/randytarampi/Development/me/packages/assets",
-    "@randy.tarampi/browser-logger": "portal:/Users/randytarampi/Development/me/packages/browser-logger",
-    "@randy.tarampi/css": "portal:/Users/randytarampi/Development/me/packages/css",
-    "@randy.tarampi/js": "portal:/Users/randytarampi/Development/me/packages/js",
-    "jsonresume-theme-randytarampi": "portal:/Users/randytarampi/Development/me/packages/jsonresume-theme",
-    "@randy.tarampi/jsx": "portal:/Users/randytarampi/Development/me/packages/jsx",
-    "@randy.tarampi/lambda-logger": "portal:/Users/randytarampi/Development/me/packages/lambda-logger",
-    "@randy.tarampi/letter": "portal:/Users/randytarampi/Development/me/packages/letter",
-    "@randy.tarampi/printables": "portal:/Users/randytarampi/Development/me/packages/printables",
-    "@randy.tarampi/redux-metrics": "portal:/Users/randytarampi/Development/me/packages/redux-metrics",
-    "@randy.tarampi/resume": "portal:/Users/randytarampi/Development/me/packages/resume",
-    "@randy.tarampi/serverless": "portal:/Users/randytarampi/Development/me/packages/serverless",
-    "@randy.tarampi/views": "portal:/Users/randytarampi/Development/me/packages/views"
+    "@randy.tarampi/assets": "portal:../me/packages/assets",
+    "@randy.tarampi/browser-logger": "portal:../me/packages/browser-logger",
+    "@randy.tarampi/css": "portal:../me/packages/css",
+    "@randy.tarampi/js": "portal:../me/packages/js",
+    "jsonresume-theme-randytarampi": "portal:../me/packages/jsonresume-theme",
+    "@randy.tarampi/jsx": "portal:../me/packages/jsx",
+    "@randy.tarampi/lambda-logger": "portal:../me/packages/lambda-logger",
+    "@randy.tarampi/letter": "portal:../me/packages/letter",
+    "@randy.tarampi/printables": "portal:../me/packages/printables",
+    "@randy.tarampi/redux-metrics": "portal:../me/packages/redux-metrics",
+    "@randy.tarampi/resume": "portal:../me/packages/resume",
+    "@randy.tarampi/serverless": "portal:../me/packages/serverless",
+    "@randy.tarampi/views": "portal:../me/packages/views"
   }
 }
