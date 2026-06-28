@@ -13,5 +13,3 @@ export const handler = (event, context, callback) => {
         .then(() => callback(null))
         .catch(returnErrorResponse(event, context, callback));
 };
-
-export default handler;

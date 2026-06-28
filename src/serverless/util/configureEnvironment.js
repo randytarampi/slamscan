@@ -10,5 +10,3 @@ export const configureEnvironment = async () => {
             throw error;
         });
 };
-
-export default configureEnvironment;
