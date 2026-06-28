@@ -96,18 +96,19 @@
   },
   "packageManager": "yarn@4.17.0",
   "resolutions": {
-    "@randy.tarampi/assets": "portal:../me/packages/assets",
-    "@randy.tarampi/browser-logger": "portal:../me/packages/browser-logger",
-    "@randy.tarampi/css": "portal:../me/packages/css",
-    "@randy.tarampi/js": "portal:../me/packages/js",
-    "jsonresume-theme-randytarampi": "portal:../me/packages/jsonresume-theme",
-    "@randy.tarampi/jsx": "portal:../me/packages/jsx",
-    "@randy.tarampi/lambda-logger": "portal:../me/packages/lambda-logger",
-    "@randy.tarampi/letter": "portal:../me/packages/letter",
-    "@randy.tarampi/printables": "portal:../me/packages/printables",
-    "@randy.tarampi/redux-metrics": "portal:../me/packages/redux-metrics",
-    "@randy.tarampi/resume": "portal:../me/packages/resume",
-    "@randy.tarampi/serverless": "portal:../me/packages/serverless",
-    "@randy.tarampi/views": "portal:../me/packages/views"
+    "immutable": "^5.1.7",
+    "@randy.tarampi/assets": "^7.0.0",
+    "@randy.tarampi/browser-logger": "^7.0.0",
+    "@randy.tarampi/css": "^7.0.0",
+    "@randy.tarampi/js": "^7.0.0",
+    "jsonresume-theme-randytarampi": "^7.0.0",
+    "@randy.tarampi/jsx": "^7.0.0",
+    "@randy.tarampi/lambda-logger": "^7.0.0",
+    "@randy.tarampi/letter": "^7.0.0",
+    "@randy.tarampi/printables": "^7.0.0",
+    "@randy.tarampi/redux-metrics": "^7.0.0",
+    "@randy.tarampi/resume": "^7.0.0",
+    "@randy.tarampi/serverless": "^7.0.0",
+    "@randy.tarampi/views": "^7.0.0"
   }
 }
