@@ -8,7 +8,7 @@
 |_______|3 |_______||__| |__||_|   |_|bda Clam|_______||_______||__| |__||_|  |__|
 ```
 
-[![CI](https://github.com/randytarampi/slamscan/actions/workflows/ci.yml/badge.svg)](https://github.com/randytarampi/slamscan/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/randytarampi/slamscan/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/randytarampi/slamscan/actions/workflows/ci.yml) [![CodeQL](https://img.shields.io/github/actions/workflow/status/randytarampi/slamscan/codeql.yml?branch=main&style=flat-square&label=CodeQL)](https://github.com/randytarampi/slamscan/security/code-scanning)
 
 
 
