@@ -9,6 +9,7 @@
 ```
 
 [![CI](https://img.shields.io/github/actions/workflow/status/randytarampi/slamscan/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/randytarampi/slamscan/actions/workflows/ci.yml) [![CodeQL](https://img.shields.io/github/actions/workflow/status/randytarampi/slamscan/codeql.yml?branch=main&style=flat-square&label=CodeQL)](https://github.com/randytarampi/slamscan/security/code-scanning)
+[![License](https://img.shields.io/github/license/randytarampi/slamscan?style=flat-square)](LICENSE) [![Issues](https://img.shields.io/github/issues/randytarampi/slamscan?style=flat-square)](https://github.com/randytarampi/slamscan/issues) [![Pull requests](https://img.shields.io/github/issues-pr/randytarampi/slamscan?style=flat-square)](https://github.com/randytarampi/slamscan/pulls)
 
 
 
