@@ -48,6 +48,9 @@ yarn test
 # Run tests with coverage
 yarn cover
 
+# Verify the complete CI sequence locally
+yarn verify:ci
+
 # If you want the SLS integration tests too
 SLAMSCAN_RUN_SLS_TESTS=1 yarn test
 ```

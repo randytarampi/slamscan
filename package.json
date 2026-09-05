@@ -81,6 +81,7 @@
     "precover": "yarn run pretest",
     "lint": "eslint .",
     "verify": "yarn lint && yarn test",
+    "verify:ci": "yarn install --immutable && yarn build && yarn lint && yarn test && yarn c8 -r lcov --all yarn test && test -s coverage/lcov.info",
     "pretest": "gulp -LLLL --color lint",
     "remove": "sls remove --stage deploy",
     "seed": "sls invoke --stage deploy --function updateDefinitions",
