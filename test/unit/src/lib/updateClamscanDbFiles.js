@@ -1,6 +1,7 @@
 import {expect} from "chai";
 import childProcess from "child_process";
 import md5 from "md5";
+import os from "os";
 import path from "path";
 import sinon from "sinon";
 import clamscanModule from "../../../../src/lib/clamscan.js";
@@ -25,7 +26,7 @@ describe("updateClamscanDbFiles", function () {
         stubDirectory = "/tmp/dir";
         stubFileValue = "woof";
 
-        sinon.stub(childProcess, "exec").yields(null, null, null);
+        sinon.stub(childProcess, "execFile").yields(null, null, null);
         sinon.stub(clamscanModule, "scanFile").returns(Promise.resolve(false));
         sinon.stub(createTempDirectoryModule, "createTempDirectory").returns(Promise.resolve(stubDirectory));
         sinon.stub(uploadFileToBucketModule, "uploadFileToBucket").callsFake((bucket, key, localFilePath) => Promise.resolve(localFilePath));
@@ -37,7 +38,7 @@ describe("updateClamscanDbFiles", function () {
     });
 
     afterEach(function () {
-        childProcess.exec.restore();
+        childProcess.execFile.restore();
         clamscanModule.scanFile.restore();
         createTempDirectoryModule.createTempDirectory.restore();
         uploadFileToBucketModule.uploadFileToBucket.restore();
@@ -48,30 +49,28 @@ describe("updateClamscanDbFiles", function () {
 
     describe("downloadClamscanDbFilesFromFreshclam", function () {
         it("does as it says", function () {
-            const expectedCommand = [
-                process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH,
-                "--config-file=$SLAMSCAN_FRESHCLAM_CONFIG_PATH",
-                "--user=$(whoami)",
+            const expectedArgs = [
+                `--config-file=${process.env.SLAMSCAN_FRESHCLAM_CONFIG_PATH}`,
+                `--user=${os.userInfo().username}`,
                 `--datadir=${stubDirectory}`
-            ].join(" ");
+            ];
 
             return downloadClamscanDbFilesFromFreshclam(stubDirectory)
                 .then(() => {
-                    sinon.assert.calledOnce(childProcess.exec);
-                    sinon.assert.calledWith(childProcess.exec, expectedCommand);
+                    sinon.assert.calledOnce(childProcess.execFile);
+                    sinon.assert.calledWith(childProcess.execFile, process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH, expectedArgs);
                 });
         });
 
         it("propagates errors", function () {
-            const expectedCommand = [
-                process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH,
-                "--config-file=$SLAMSCAN_FRESHCLAM_CONFIG_PATH",
-                "--user=$(whoami)",
+            const expectedArgs = [
+                `--config-file=${process.env.SLAMSCAN_FRESHCLAM_CONFIG_PATH}`,
+                `--user=${os.userInfo().username}`,
                 `--datadir=${stubDirectory}`
-            ].join(" ");
+            ];
 
-            childProcess.exec.restore();
-            sinon.stub(childProcess, "exec").yields(new Error("woof"), "meow", "grr");
+            childProcess.execFile.restore();
+            sinon.stub(childProcess, "execFile").yields(new Error("woof"), "meow", "grr");
 
             return downloadClamscanDbFilesFromFreshclam(stubDirectory)
                 .then(() => {
@@ -80,8 +79,8 @@ describe("updateClamscanDbFiles", function () {
                 .catch(error => {
                     expect(error.message).to.eql("woof");
 
-                    sinon.assert.calledOnce(childProcess.exec);
-                    sinon.assert.calledWith(childProcess.exec, expectedCommand);
+                    sinon.assert.calledOnce(childProcess.execFile);
+                    sinon.assert.calledWith(childProcess.execFile, process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH, expectedArgs);
                 });
         });
     });
@@ -148,7 +147,7 @@ describe("updateClamscanDbFiles", function () {
             .then(() => {
                 sinon.assert.calledOnce(createTempDirectoryModule.createTempDirectory);
 
-                sinon.assert.calledOnce(childProcess.exec);
+                sinon.assert.calledOnce(childProcess.execFile);
 
                 expect(readFileModule.readFile.callCount).to.eql(clamscanModule.CLAMSCAN_DB_FILES.length);
                 expect(getTagsForFileInBucketModule.getTagsForFileInBucket.callCount).to.eql(clamscanModule.CLAMSCAN_DB_FILES.length);

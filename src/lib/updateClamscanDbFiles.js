@@ -1,5 +1,6 @@
 import childProcess from "child_process";
 import md5 from "md5";
+import os from "os";
 import path from "path";
 import logger from "../serverless/logger.js";
 import clamscan from "./clamscan.js";
@@ -11,14 +12,14 @@ import uploadFileToBucket from "./util/uploadFileToBucket.js";
 import {S3_FILE_CONTENT_MD5_TAG} from "./constants.js";
 
 export const downloadClamscanDbFilesFromFreshclam = directory => new Promise((resolve, reject) => {
-    const command = [
-        process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH,
-        "--config-file=$SLAMSCAN_FRESHCLAM_CONFIG_PATH",
-        "--user=$(whoami)",
+    const command = process.env.SLAMSCAN_FRESHCLAM_BINARY_PATH;
+    const args = [
+        `--config-file=${process.env.SLAMSCAN_FRESHCLAM_CONFIG_PATH}`,
+        `--user=${os.userInfo().username}`,
         `--datadir=${directory}`
-    ].join(" ");
+    ];
 
-    childProcess.exec(command, (error, stdout, stderr) => {
+    childProcess.execFile(command, args, (error, stdout, stderr) => {
         if (stdout) {
             logger.info("stdout received from %s", command, stdout);
         }
