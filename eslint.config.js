@@ -21,12 +21,22 @@ export default [
     },
     js.configs.recommended,
     {
+        files: ["**/*.cjs"],
+        languageOptions: {
+            ecmaVersion: "latest",
+            sourceType: "commonjs",
+            globals: {
+                ...globals.node
+            }
+        }
+    },
+    {
         files: ["**/*.js"],
         plugins: {
             import: importPlugin
         },
         languageOptions: {
-            ecmaVersion: 2022,
+            ecmaVersion: "latest",
             sourceType: "module",
             globals: {
                 ...globals.node,
