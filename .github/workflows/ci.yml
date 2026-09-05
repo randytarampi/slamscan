@@ -1,6 +1,8 @@
 name: CI
 on:
   push:
+    branches:
+      - main
   pull_request:
 
 concurrency:
@@ -30,11 +32,22 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Cache Yarn
+        uses: actions/cache@v6
+        with:
+          path: |
+            .yarn/cache
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-
+
       - name: Install dependencies
         env:
           YARN_ENABLE_HARDENED_MODE: false
-        run: yarn install
+        run: yarn install --immutable
 
+      # SLS integration tests remain opt-in because they require the local Serverless test setup.
       - name: Install ClamAV
         run: sudo apt-get update && sudo apt-get install -y clamav clamav-daemon
 
@@ -53,7 +66,8 @@ jobs:
 
       - name: Build native addon
         run: yarn build
-
+      - name: Lint
+        run: yarn lint
       - name: Run tests
         run: yarn test
       - name: Generate coverage
