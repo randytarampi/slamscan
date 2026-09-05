@@ -79,6 +79,7 @@
     "build:native": "./bin/build.sh",
     "precover": "yarn run pretest",
     "lint": "eslint .",
+    "verify": "yarn lint && yarn test",
     "pretest": "gulp -LLLL --color lint",
     "remove": "sls remove --stage deploy",
     "seed": "sls invoke --stage deploy --function updateDefinitions",
