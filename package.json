@@ -91,7 +91,7 @@
     "test:actual:sls": "sh -c 'cross-env-shell NODE_ENV=test SLAMSCAN_CLAMSCAN_BINARY_PATH=${SLAMSCAN_CLAMSCAN_BINARY_PATH:=$(which clamscan)} SLAMSCAN_FRESHCLAM_BINARY_PATH=${SLAMSCAN_FRESHCLAM_BINARY_PATH:=$(which freshclam)} SLAMSCAN_FRESHCLAM_CONFIG_PATH=${SLAMSCAN_FRESHCLAM_CONFIG_PATH:=$PWD/build/etc/freshclam.conf} sls invoke test --path test/sls --compilers js:./babel.register.cjs'",
     "prepare": "husky"
   },
-  "packageManager": "yarn@4.17.0",
+  "packageManager": "yarn@4.18.0",
   "resolutions": {
     "immutable": "^5.1.7",
     "@randy.tarampi/assets": "^7.0.0",
